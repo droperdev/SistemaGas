@@ -89,7 +89,7 @@
                 <% producto = productos.get(i);%>
                 <div class="card producto">
                     <img src="<%=producto.getFotoUrl()%>" />
-                    <%=producto.getNombre()%>
+                    <%=producto.getNombre()%><br>
                     S/&nbsp;<%=String.format("%.2f", producto.getPrecio())%>
                 </div>
                 <%}%>

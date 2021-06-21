@@ -19,13 +19,13 @@ import java.util.logging.Logger;
  *
  * @author droperdev
  */
-public class MarcaDAOImpl implements MarcaDAO{
+public class MarcaDAOImpl implements MarcaDAO {
 
-     Conexion cn = new Conexion();
+    Conexion cn = new Conexion();
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
-    
+
     @Override
     public List<Marca> obtenerMarcas() {
         ArrayList<Marca> marcas = new ArrayList<>();
@@ -48,5 +48,5 @@ public class MarcaDAOImpl implements MarcaDAO{
         }
         return marcas;
     }
-    
+
 }
