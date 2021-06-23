@@ -5,8 +5,6 @@
  */
 package dto;
 
-import model.marca.Marca;
-
 /**
  *
  * @author droperdev

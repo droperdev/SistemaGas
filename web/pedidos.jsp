@@ -3,6 +3,8 @@
     Created on : 17/04/2021, 04:33:53 AM
     Author     : droperdev
 --%>
+<%@page import="model.pedido.PedidoDAOImpl"%>
+<%@page import="dto.PedidoDTO"%>
 <%@page import="model.marca.Marca"%>
 <%@page import="model.marca.MarcaDAOImpl"%>
 <%@page import="java.util.List"%>
@@ -81,7 +83,67 @@
             </div>
         </div>
         <div class="content">
-           
+             <% int[] ids = {1, 2, 3}; %>
+            <% List<PedidoDTO> pedidos = new PedidoDAOImpl().obtenerPedidos(ids); %>
+            <div class="card table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Cliente</th>
+                            <th>Dirección</th>
+                            <th>Método de Pago</th>
+                            <th>Comprobante</th>
+                            <th>Tipo de pedido </th>
+                            <th>Repartidor</th>
+                            <th>Total</th>
+                            <th class="text-center">Estado</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%! PedidoDTO pedido;%>
+                        <% for (int i = 0; i < pedidos.size(); i++) { %>
+                        <% pedido = pedidos.get(i);%>
+                        <tr>
+                            <td><%=pedido.getId()%></td>
+                            <td><%=pedido.getCliente().getNombre()%></td>
+                            <td>
+                                <%=pedido.getDireccion().getDireccion()%> <br>
+                                <%=pedido.getDireccion().getReferencia()%>
+                            </td>
+                            <td><%=pedido.getMetodoPago().getNombre()%></td>
+                            <td><%=pedido.getComprobante().getNombre()%></td>
+                            <td><%=pedido.getTipoPedido().getNombre()%></td>
+                            <% if (pedido.getUsuario().getNombre() != null) {%>
+                            <td class="font-weight-bold"><%=pedido.getUsuario().getNombre()+ " " + pedido.getUsuario().getApellido()%></td>
+                            <% } else {%>
+                            <td class="font-weight-bold">-</td>
+                            <%}%>
+                            <td class="font-weight-bold text-success">S/&nbsp;<%=String.format("%.2f", pedido.getTotal())%></td>
+                            <td class="text-center"><span class="<%=pedido.getEstado().getNombreClase()%>"><%=pedido.getEstado().getNombre()%></span></td>
+                            <td class="text-center">
+                                <div class="dropdown">
+                                    <a class="btn fa fa-ellipsis-v" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <%if (pedido.getEstado().getId() == 2) {%>
+                                        <button class="dropdown-item" onclick="openAssignOrder('<%=pedido.getId()%>');" ><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;Asignar pedido</button>
+                                        <%}%>
+                                        <button class="dropdown-item" onclick="openDetail('<%=pedido.getId()%>');"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;&nbsp;Ver pedido</button>
+                                        <button class="dropdown-item" onclick="openMap('<%=pedido.getId()%>');" ><i class="fa fa-map"></i>&nbsp;&nbsp;&nbsp;Ver mapa</button>
+                                        <%if (pedido.getEstado().getId() != 2) {%>
+                                        <button class="dropdown-item" onclick="openChangeStatus('<%=pedido.getId()%>');" ><i class="fa fa-spinner"></i>&nbsp;&nbsp;&nbsp;Cambiar de estado</button>
+                                        <%}%>
+                                        <button class="dropdown-item" onclick="openCancelOrder('<%=pedido.getId()%>');" ><i class="fa fa-spinner"></i>&nbsp;&nbsp;&nbsp;Anular pedido</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <% }%>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="modal fade" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" >
             <div class="modal-dialog" role="document">

@@ -8,6 +8,30 @@ and open the template in the editor.
     Author     : droperdev
 */
 
+.marcas{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: center;
+}
+
+.marca {
+    min-width: 150px;
+    padding: 8px 16px;
+    margin: 16px;
+    text-align:center;
+    border-radius: 16px;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #FF8000;
+    color: white;
+}
+
 .productos{
     display: flex;
     flex-wrap: wrap;
@@ -19,4 +43,10 @@ and open the template in the editor.
     padding: 8px 8px 8px 8px;
     margin: 8px;
     text-align:center;
+}
+
+@media (max-width: 800px) {
+    .marcas{
+        justify-content: flex-start;
+    }
 }

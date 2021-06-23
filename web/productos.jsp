@@ -3,8 +3,10 @@
     Created on : 17/04/2021, 04:33:53 AM
     Author     : droperdev
 --%>
-<%@page import="model.productos.Producto"%>
-<%@page import="model.productos.ProductoDAOImpl"%>
+<%@page import="model.marca.MarcaDAOImpl"%>
+<%@page import="model.marca.Marca"%>
+<%@page import="model.producto.Producto"%>
+<%@page import="model.producto.ProductoDAOImpl"%>
 <%@page import="dto.ProductoDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="dto.UsuarioDTO"%>
@@ -82,17 +84,18 @@
             </div>
         </div>
         <div class="content">
-            <div class="productos">
-                <% List<ProductoDTO> productos = new ProductoDAOImpl().obtenerProductos(1); %>
-                <%! ProductoDTO producto;%>
-                <% for (int i = 0; i < productos.size(); i++) { %>
-                <% producto = productos.get(i);%>
-                <div class="card producto">
-                    <img src="<%=producto.getFotoUrl()%>" />
-                    <%=producto.getNombre()%><br>
-                    S/&nbsp;<%=String.format("%.2f", producto.getPrecio())%>
+            <div class="marcas">
+                <% List<Marca> marcas = new MarcaDAOImpl().obtenerMarcas(); %>
+                <%! Marca marca;%>
+                <% for (int i = 0; i < marcas.size(); i++) { %>
+                <% marca = marcas.get(i);%>
+                <div id="marca<%=marca.getId()%>" class="card marca" onclick="cargarProductos(<%=marca.getId()%>)">
+                    <%=marca.getNombre()%>
                 </div>
-                <%}%>
+                <% }%>
+            </div>
+            <div id="productos" class="productos">
+
             </div>
         </div>
         <div class="modal fade" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" >
@@ -111,7 +114,7 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="scripts/main.js"></script>
+        <script src="scripts/productos.js"></script>
     </body>
 </html>
 <%

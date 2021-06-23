@@ -12,81 +12,84 @@ import model.rol.Rol;
  * @author droperdev
  */
 public class UsuarioDTO {
-   private int Id;
-    private Rol Rol;
-    private String Nombre;
-    private String Apellido;
-    private String FotoPerfil;
-    private String Correo;
+
+    private int id;
+    private Rol rol;
+    private String nombre;
+    private String apellido;
+    private String fotoPerfil;
+    private String correo;
 
     public UsuarioDTO() {
     }
 
-    @Override
-    public String toString() {
-        return "UsuarioDTO{" + "Id=" + Id + ", Rol=" + Rol + ", Nombre=" + Nombre + ", Apellido=" + Apellido + ", FotoPerfil=" + FotoPerfil + ", Correo=" + Correo + '}';
+    public UsuarioDTO(int id, Rol rol, String nombre, String apellido, String fotoPerfil, String correo) {
+        this.id = id;
+        this.rol = rol;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fotoPerfil = fotoPerfil;
+        this.correo = correo;
+    }
+
+    public UsuarioDTO(int id, String nombre, String apellido) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
     }
     
-    public UsuarioDTO(int Id, Rol Rol, String Nombre, String Apellido, String FotoPerfil, String Correo) {
-        this.Id = Id;
-        this.Rol = Rol;
-        this.Nombre = Nombre;
-        this.Apellido = Apellido;
-        this.FotoPerfil = FotoPerfil;
-        this.Correo = Correo;
-    }
+   
 
     public int getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Rol getRol() {
-        return Rol;
+        return rol;
     }
 
-    public void setRol(Rol Rol) {
-        this.Rol = Rol;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getApellido() {
-        return Apellido;
+        return apellido;
     }
 
-    public void setApellido(String Apellido) {
-        this.Apellido = Apellido;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getFotoPerfil() {
-        return FotoPerfil;
+        return fotoPerfil;
     }
 
-    public void setFotoPerfil(String FotoPerfil) {
-        this.FotoPerfil = FotoPerfil;
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
-    
-    
-    public String getFullName(){
-        return this.Nombre + " "+ this.Apellido;
+
+    public String getFullName() {
+        return this.nombre + " " + this.apellido;
     }
-    
+
 }

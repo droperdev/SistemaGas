@@ -81,7 +81,27 @@
             </div>
         </div>
         <div class="content">
-           
+           <div class="card table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Cliente</th>
+                            <th>Dirección</th>
+                            <th>Método de Pago</th>
+                            <th>Comprobante</th>
+                            <th>Tipo de pedido </th>
+                            <th>Repartidor</th>
+                            <th>Total</th>
+                            <th class="text-center">Estado</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="modal fade" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" >
             <div class="modal-dialog" role="document">

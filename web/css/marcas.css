@@ -16,7 +16,12 @@ and open the template in the editor.
 
 .marca{
     width: 200px;
-    padding: 8px 8px 8px 8px;
+    padding: 0px 0px 8px 0px;
     margin: 8px;
     text-align:center;
+}
+
+.marca img {
+    object-fit: cover;
+    height: 200px;
 }
