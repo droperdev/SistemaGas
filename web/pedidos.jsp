@@ -130,8 +130,8 @@
                                         <%if (pedido.getEstado().getId() == 2) {%>
                                         <button class="dropdown-item" onclick="openAssignOrder('<%=pedido.getId()%>');" ><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;Asignar pedido</button>
                                         <%}%>
-                                        <button class="dropdown-item" onclick="openDetail('<%=pedido.getId()%>');"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;&nbsp;Ver pedido</button>
-                                        <button class="dropdown-item" onclick="openMap('<%=pedido.getId()%>');" ><i class="fa fa-map"></i>&nbsp;&nbsp;&nbsp;Ver mapa</button>
+                                        <button class="dropdown-item" onclick="abrirDetallePedido('<%=pedido.getId()%>');"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;&nbsp;Ver pedido</button>
+                                        <button class="dropdown-item" onclick="abrirMapa('<%=pedido.getId()%>');" ><i class="fa fa-map"></i>&nbsp;&nbsp;&nbsp;Ver mapa</button>
                                         <%if (pedido.getEstado().getId() != 2) {%>
                                         <button class="dropdown-item" onclick="openChangeStatus('<%=pedido.getId()%>');" ><i class="fa fa-spinner"></i>&nbsp;&nbsp;&nbsp;Cambiar de estado</button>
                                         <%}%>

@@ -3,6 +3,8 @@
     Created on : 17/04/2021, 04:33:53 AM
     Author     : droperdev
 --%>
+<%@page import="model.pedido.PedidoDAOImpl"%>
+<%@page import="dto.PedidoDTO"%>
 <%@page import="model.marca.Marca"%>
 <%@page import="model.marca.MarcaDAOImpl"%>
 <%@page import="java.util.List"%>
@@ -55,13 +57,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Main?action=pedidos">
+                        <a class="nav-link " href="Main?action=pedidos">
                             <img class="icon" src="assets/order.svg">
                             <span clasS="text-wrap">Pedidos</span>
                         </a>
                     </li>
                     <li class="nav-item show">
-                        <a class="nav-link " href="Main?action=historial">
+                        <a class="nav-link" href="Main?action=historial">
                             <img class="icon" src="assets/order.svg">
                             <span clasS="text-wrap">Historial</span>
                         </a>
@@ -77,11 +79,13 @@
         </div>
         <div class="header">
             <div class="content-header">
-                <span class="title">Historial de pedidos</span>
+                <span class="title">Historial de Pedidos</span>
             </div>
         </div>
         <div class="content">
-           <div class="card table-responsive">
+             <% int[] ids = {4, 5}; %>
+            <% List<PedidoDTO> pedidos = new PedidoDAOImpl().obtenerPedidos(ids); %>
+            <div class="card table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -98,7 +102,38 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        <%! PedidoDTO pedido;%>
+                        <% for (int i = 0; i < pedidos.size(); i++) { %>
+                        <% pedido = pedidos.get(i);%>
+                        <tr>
+                            <td><%=pedido.getId()%></td>
+                            <td><%=pedido.getCliente().getNombre()%></td>
+                            <td>
+                                <%=pedido.getDireccion().getDireccion()%> <br>
+                                <%=pedido.getDireccion().getReferencia()%>
+                            </td>
+                            <td><%=pedido.getMetodoPago().getNombre()%></td>
+                            <td><%=pedido.getComprobante().getNombre()%></td>
+                            <td><%=pedido.getTipoPedido().getNombre()%></td>
+                            <% if (pedido.getUsuario().getNombre() != null) {%>
+                            <td class="font-weight-bold"><%=pedido.getUsuario().getNombre()+ " " + pedido.getUsuario().getApellido()%></td>
+                            <% } else {%>
+                            <td class="font-weight-bold">-</td>
+                            <%}%>
+                            <td class="font-weight-bold text-success">S/&nbsp;<%=String.format("%.2f", pedido.getTotal())%></td>
+                            <td class="text-center"><span class="<%=pedido.getEstado().getNombreClase()%>"><%=pedido.getEstado().getNombre()%></span></td>
+                            <td class="text-center">
+                                <div class="dropdown">
+                                    <a class="btn fa fa-ellipsis-v" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">                                   
+                                        <button class="dropdown-item" onclick="abrirDetallePedido('<%=pedido.getId()%>');"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;&nbsp;Ver pedido</button>
+                                        <button class="dropdown-item" onclick="abrirMapa('<%=pedido.getId()%>');" ><i class="fa fa-map"></i>&nbsp;&nbsp;&nbsp;Ver mapa</button>                                    
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <% }%>
                     </tbody>
                 </table>
             </div>

@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.pedido;
+package model.pedidoDetalle;
 
-import dto.PedidoDTO;
+import dto.PedidoDetalleDTO;
 import java.util.List;
 
 /**
  *
  * @author droperdev
  */
-public interface PedidoDAO {
-    public List<PedidoDTO> obtenerPedidos(int[] ids);
-    public PedidoDTO obtenerPedido(int pedidoId);
+public interface PedidoDetalleDAO {
+     public List<PedidoDetalleDTO> obtenerDetalle(int pedidoId);
 }

@@ -13,12 +13,20 @@ public class ProductoDTO {
 
     private int Id;
     private String Nombre;
+    private MarcaDTO Marca;
     private String Descripcion;
     private String FotoUrl;
     private int Stock;
     private double Precio;
 
     public ProductoDTO() {
+    }
+
+    public ProductoDTO(int Id, MarcaDTO Marca, String Nombre, String Descripcion) {
+        this.Id = Id;
+        this.Marca = Marca;
+        this.Nombre = Nombre;
+        this.Descripcion = Descripcion;
     }
 
     public ProductoDTO(int Id, String Nombre, String Descripcion, String FotoUrl, int Stock, double Precio) {
@@ -45,6 +53,16 @@ public class ProductoDTO {
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
     }
+
+    public MarcaDTO getMarca() {
+        return Marca;
+    }
+
+    public void setMarca(MarcaDTO Marca) {
+        this.Marca = Marca;
+    }
+    
+    
 
     public String getDescripcion() {
         return Descripcion;

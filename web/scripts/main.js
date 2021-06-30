@@ -4,19 +4,19 @@
  * and open the template in the editor.
  */
 
-openDetail = (orderId) => {
-    console.log(orderId);
+abrirDetallePedido = (pedidoId) => {
+    console.log(pedidoId);
     $("#MyModal").modal('show');
     $(".modal-dialog").removeClass("modal-lg").addClass("modal-lg");
-    $("#MyModalLabel").text("Detalle de pedido N° " + orderId);
-    $("#content-modal").load("detail.jsp", {orderId});
+    $("#MyModalLabel").text("Detalle de pedido N° " + pedidoId);
+    $("#content-modal").load("detallePedido.jsp", {pedidoId});
 };
 
-openMap = (orderId) => {
+abrirMapa = (pedidoId) => {
     $("#MyModal").modal('show');
     $(".modal-dialog").removeClass("modal-lg").addClass("modal-lg");
-    $("#MyModalLabel").text("Detalle de pedido N° " + orderId);
-    $("#content-modal").load("map.jsp", {orderId});
+    $("#MyModalLabel").text("Detalle de pedido N° " + pedidoId);
+    $("#content-modal").load("mapa.jsp", {pedidoId});
 }
 
 openAssignOrder = (orderId) => {

@@ -51,9 +51,6 @@ public class Estado {
                 nombreClase = "badge p-2 badge-pill badge-success";
                 break;
             case 4:
-                nombreClase = "badge p-2 badge-pill badge-success";
-                break;
-            case 5:
                 nombreClase = "badge p-2 badge-pill badge-danger";
                 break;
         }
