@@ -151,8 +151,6 @@ public class PedidoDAOImpl implements PedidoDAO {
                 + "LEFT JOIN Usuario u ON o.RepartidorId = u.Id "
                 + "WHERE o.Id = ?";
 
-      
-
         con = cn.getConnection();
         try {
             ps = con.prepareStatement(query);
@@ -208,12 +206,58 @@ public class PedidoDAOImpl implements PedidoDAO {
                         )
                 );
                 pedido.setTotal(rs.getDouble("Total"));
-             
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(PedidoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return pedido;
+    }
+
+    @Override
+    public void asignarRepartidor(int pedidoId, int repartidorId) {
+        String query
+                = "UPDATE Pedido p SET p.RepartidorId =? "
+                + "WHERE p.Id = ?";
+        con = cn.getConnection();
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1, repartidorId);
+            ps.setInt(2, pedidoId);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void cambiarEstado(int pedidoId) {
+        String query
+                = "UPDATE Pedido p SET p.EstadoId = p.EstadoId + 1 "
+                + "WHERE p.Id = ?";
+        con = cn.getConnection();
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1, pedidoId);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void anularPedido(int pedidoId) {
+        String query
+                = "UPDATE Pedido p SET p.EstadoId = 4 "
+                + "WHERE p.Id = ?";
+        con = cn.getConnection();
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1, pedidoId);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

@@ -6,11 +6,15 @@
 package model.usuario;
 
 import dto.UsuarioDTO;
+import java.util.List;
 
 /**
  *
  * @author droperdev
  */
 public interface UsuarioDAO {
+
     public UsuarioDTO validarCredenciales(String correo, String password);
+
+    public List<UsuarioDTO> obtenerDistribuidores();
 }

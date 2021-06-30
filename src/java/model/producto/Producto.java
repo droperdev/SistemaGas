@@ -10,90 +10,90 @@ package model.producto;
  * @author droperdev
  */
 public class Producto {
-    private int Id;
-    private int MarcaId;
-    private String Nombre;
-    private String Descripcion;
-    private String FotoUrl;
-    private int Stock;
-    private int Precio;
-    private int Estado;
-    private int Creacion;
+
+    private int id;
+    private int marcaId;
+    private String nombre;
+    private String descripcion;
+    private String fotoUrl;
+    private int stock;
+    private int precio;
+    private int estado;
+    private int creacion;
 
     public Producto() {
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getMarcaId() {
-        return MarcaId;
+        return marcaId;
     }
 
-    public void setMarcaId(int MarcaId) {
-        this.MarcaId = MarcaId;
+    public void setMarcaId(int marcaId) {
+        this.marcaId = marcaId;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDescripcion() {
-        return Descripcion;
+        return descripcion;
     }
 
-    public void setDescripcion(String Descripcion) {
-        this.Descripcion = Descripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getFotoUrl() {
-        return FotoUrl;
+        return fotoUrl;
     }
 
-    public void setFotoUrl(String FotoUrl) {
-        this.FotoUrl = FotoUrl;
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
     }
 
     public int getStock() {
-        return Stock;
+        return stock;
     }
 
-    public void setStock(int Stock) {
-        this.Stock = Stock;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public int getPrecio() {
-        return Precio;
+        return precio;
     }
 
-    public void setPrecio(int Precio) {
-        this.Precio = Precio;
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
 
     public int getEstado() {
-        return Estado;
+        return estado;
     }
 
-    public void setEstado(int Estado) {
-        this.Estado = Estado;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     public int getCreacion() {
-        return Creacion;
+        return creacion;
     }
 
-    public void setCreacion(int Creacion) {
-        this.Creacion = Creacion;
+    public void setCreacion(int creacion) {
+        this.creacion = creacion;
     }
-    
-    
+
 }

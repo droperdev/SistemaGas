@@ -11,89 +11,87 @@ package dto;
  */
 public class ProductoDTO {
 
-    private int Id;
-    private String Nombre;
-    private MarcaDTO Marca;
-    private String Descripcion;
-    private String FotoUrl;
-    private int Stock;
-    private double Precio;
+    private int id;
+    private String nombre;
+    private MarcaDTO marca;
+    private String descripcion;
+    private String fotoUrl;
+    private int stock;
+    private double precio;
 
     public ProductoDTO() {
     }
 
-    public ProductoDTO(int Id, MarcaDTO Marca, String Nombre, String Descripcion) {
-        this.Id = Id;
-        this.Marca = Marca;
-        this.Nombre = Nombre;
-        this.Descripcion = Descripcion;
+    public ProductoDTO(int id, MarcaDTO marca, String nombre, String descripcion) {
+        this.id = id;
+        this.marca = marca;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
-    public ProductoDTO(int Id, String Nombre, String Descripcion, String FotoUrl, int Stock, double Precio) {
-        this.Id = Id;
-        this.Nombre = Nombre;
-        this.Descripcion = Descripcion;
-        this.FotoUrl = FotoUrl;
-        this.Stock = Stock;
-        this.Precio = Precio;
+    public ProductoDTO(int id, String nombre, String descripcion, String fotoUrl, int stock, double precio) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fotoUrl = fotoUrl;
+        this.stock = stock;
+        this.precio = precio;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public MarcaDTO getMarca() {
-        return Marca;
+        return marca;
     }
 
-    public void setMarca(MarcaDTO Marca) {
-        this.Marca = Marca;
+    public void setMarca(MarcaDTO marca) {
+        this.marca = marca;
     }
-    
-    
 
     public String getDescripcion() {
-        return Descripcion;
+        return descripcion;
     }
 
-    public void setDescripcion(String Descripcion) {
-        this.Descripcion = Descripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getFotoUrl() {
-        return FotoUrl;
+        return fotoUrl;
     }
 
-    public void setFotoUrl(String FotoUrl) {
-        this.FotoUrl = FotoUrl;
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
     }
 
     public int getStock() {
-        return Stock;
+        return stock;
     }
 
-    public void setStock(int Stock) {
-        this.Stock = Stock;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public double getPrecio() {
-        return Precio;
+        return precio;
     }
 
-    public void setPrecio(double Precio) {
-        this.Precio = Precio;
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
 }

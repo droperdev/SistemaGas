@@ -10,59 +10,57 @@ package model.marca;
  * @author droperdev
  */
 public class Marca {
-    private int Id;
-    private String Nombre;
-    private String Logo;
-    private boolean Estado;
+
+    private int id;
+    private String nombre;
+    private String logo;
+    private boolean estado;
 
     public Marca() {
     }
 
-    public Marca(int Id, String Nombre, String Logo, boolean Estado) {
-        this.Id = Id;
-        this.Nombre = Nombre;
-        this.Logo = Logo;
-        this.Estado = Estado;
+    public Marca(int id, String nombre, String logo, boolean estado) {
+        this.id = id;
+        this.nombre = nombre;
+        this.logo = logo;
+        this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Marca{" + "Id=" + Id + ", Nombre=" + Nombre + ", Logo=" + Logo + ", Estado=" + Estado + '}';
+        return "Marca{" + "id=" + id + ", nombre=" + nombre + ", logo=" + logo + ", estado=" + estado + '}';
     }
 
-    
     public int getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getLogo() {
-        return Logo;
+        return logo;
     }
 
-    public void setLogo(String Logo) {
-        this.Logo = Logo;
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
-    public boolean getEstado() {
-        return Estado;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setEstado(boolean Estado) {
-        this.Estado = Estado;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
-    
-    
-    
+
 }

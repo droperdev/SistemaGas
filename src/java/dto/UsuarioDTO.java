@@ -32,13 +32,18 @@ public class UsuarioDTO {
         this.correo = correo;
     }
 
+    public UsuarioDTO(int id, Rol rol, String nombre, String apellido) {
+        this.id = id;
+        this.rol = rol;
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+
     public UsuarioDTO(int id, String nombre, String apellido) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
     }
-    
-   
 
     public int getId() {
         return id;

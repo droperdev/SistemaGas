@@ -6,6 +6,7 @@
 
 abrirDetallePedido = (pedidoId) => {
     console.log(pedidoId);
+    $("#content-modal").empty();
     $("#MyModal").modal('show');
     $(".modal-dialog").removeClass("modal-lg").addClass("modal-lg");
     $("#MyModalLabel").text("Detalle de pedido N° " + pedidoId);
@@ -13,34 +14,39 @@ abrirDetallePedido = (pedidoId) => {
 };
 
 abrirMapa = (pedidoId) => {
+    $("#content-modal").empty();
     $("#MyModal").modal('show');
     $(".modal-dialog").removeClass("modal-lg").addClass("modal-lg");
     $("#MyModalLabel").text("Detalle de pedido N° " + pedidoId);
     $("#content-modal").load("mapa.jsp", {pedidoId});
 }
 
-openAssignOrder = (orderId) => {
+asignarPedido = (pedidoId) => {
+    $("#content-modal").empty();
     $("#MyModal").modal('show');
     $(".modal-dialog").removeClass("modal-lg").addClass("modal-md");
-    $("#MyModalLabel").text("Asignar distribuidor al pedido N° " + orderId);
-    $("#content-modal").load("assign.jsp", {orderId});
+    $("#MyModalLabel").text("Asignar distribuidor al pedido N° " + pedidoId);
+    $("#content-modal").load("asignar.jsp", {pedidoId});
 }
 
-openChangeStatus = (orderId) => {
+cambiarEstado = (pedidoId) => {
+    $("#content-modal").empty();
     $("#MyModal").modal('show');
     $(".modal-dialog").removeClass("modal-lg modal-md").addClass("modal-md");
-    $("#MyModalLabel").text("Cambio de estado del pedido N° " + orderId);
-    $("#content-modal").load("status.jsp", {orderId});
+    $("#MyModalLabel").text("Cambio de estado del pedido N° " + pedidoId);
+    $("#content-modal").load("cambiarEstado.jsp", {pedidoId});
 }
 
-openCancelOrder = (orderId) => {
+anularPedido = (pedidoId) => {
+    $("#content-modal").empty();
     $("#MyModal").modal('show');
     $(".modal-dialog").removeClass("modal-lg modal-md").addClass("modal-md");
-    $("#MyModalLabel").text("Anular pedido N° " + orderId);
-    $("#content-modal").load("cancel.jsp", {orderId});
+    $("#MyModalLabel").text("Anular pedido N° " + pedidoId);
+    $("#content-modal").load("anularPedido.jsp", {pedidoId});
 }
 
 openUser = () => {
+    $("#content-modal").empty();
     $("#MyModal2").modal('show');
     $(".modal-dialog").removeClass("modal-lg modal-md").addClass("modal-md");
     $("#MyModalLabel2").text("Registrar usuario");
@@ -48,6 +54,7 @@ openUser = () => {
 };
 
 openDeleteUser = (userId) => {
+    $("#content-modal").empty();
     $("#MyModal2").modal('show');
     $(".modal-dialog").removeClass("modal-lg modal-md").addClass("modal-md");
     $("#MyModalLabel2").text("Eliminar Usuario N° " + userId);

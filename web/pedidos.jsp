@@ -10,6 +10,7 @@
 <%@page import="java.util.List"%>
 <%@page import="dto.UsuarioDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <%
     UsuarioDTO usuario = (UsuarioDTO) session.getAttribute("usuario");
@@ -83,7 +84,7 @@
             </div>
         </div>
         <div class="content">
-             <% int[] ids = {1, 2, 3}; %>
+             <% int[] ids = {1, 2}; %>
             <% List<PedidoDTO> pedidos = new PedidoDAOImpl().obtenerPedidos(ids); %>
             <div class="card table-responsive">
                 <table class="table table-hover">
@@ -127,15 +128,15 @@
                                     <a class="btn fa fa-ellipsis-v" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <%if (pedido.getEstado().getId() == 2) {%>
-                                        <button class="dropdown-item" onclick="openAssignOrder('<%=pedido.getId()%>');" ><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;Asignar pedido</button>
+                                        <%if (pedido.getEstado().getId() == 1) {%>
+                                        <button class="dropdown-item" onclick="asignarPedido('<%=pedido.getId()%>');" ><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;Asignar pedido</button>
                                         <%}%>
                                         <button class="dropdown-item" onclick="abrirDetallePedido('<%=pedido.getId()%>');"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;&nbsp;Ver pedido</button>
                                         <button class="dropdown-item" onclick="abrirMapa('<%=pedido.getId()%>');" ><i class="fa fa-map"></i>&nbsp;&nbsp;&nbsp;Ver mapa</button>
-                                        <%if (pedido.getEstado().getId() != 2) {%>
-                                        <button class="dropdown-item" onclick="openChangeStatus('<%=pedido.getId()%>');" ><i class="fa fa-spinner"></i>&nbsp;&nbsp;&nbsp;Cambiar de estado</button>
+                                        <%if (pedido.getEstado().getId() != 1) {%>
+                                        <button class="dropdown-item" onclick="cambiarEstado('<%=pedido.getId()%>');" ><i class="fa fa-spinner"></i>&nbsp;&nbsp;&nbsp;Cambiar de estado</button>
                                         <%}%>
-                                        <button class="dropdown-item" onclick="openCancelOrder('<%=pedido.getId()%>');" ><i class="fa fa-spinner"></i>&nbsp;&nbsp;&nbsp;Anular pedido</button>
+                                        <button class="dropdown-item" onclick="anularPedido('<%=pedido.getId()%>');" ><i class="fa fa-spinner"></i>&nbsp;&nbsp;&nbsp;Anular pedido</button>
                                     </div>
                                 </div>
                             </td>

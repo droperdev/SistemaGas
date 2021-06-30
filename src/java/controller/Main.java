@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.pedido.PedidoDAOImpl;
 
 /**
  *
@@ -37,17 +38,36 @@ public class Main extends HttpServlet {
         String action = request.getParameter("action");
 
         switch (action) {
-            case "marcas": 
+            case "marcas":
                 response.sendRedirect("marcas.jsp");
                 break;
-            case "productos": 
+            case "productos":
                 response.sendRedirect("productos.jsp");
                 break;
-            case "pedidos": 
+            case "pedidos":
                 response.sendRedirect("pedidos.jsp");
-                break;    
-            case "historial": 
+                break;
+            case "historial":
                 response.sendRedirect("historial.jsp");
+                break;
+
+            case "asignar":
+                int pedidoId = Integer.parseInt(request.getParameter("pedidoId"));
+                int repartidorId = Integer.parseInt(request.getParameter("repartidorId"));
+                PedidoDAOImpl pedidoDAO = new PedidoDAOImpl();
+                pedidoDAO.asignarRepartidor(pedidoId, repartidorId);
+                pedidoDAO.cambiarEstado(pedidoId);
+                response.sendRedirect("pedidos.jsp");
+                break;
+            case "estado":
+                pedidoId = Integer.parseInt(request.getParameter("pedidoId"));
+                new PedidoDAOImpl().cambiarEstado(pedidoId);
+                response.sendRedirect("pedidos.jsp");
+                break;
+            case "anular":
+                pedidoId = Integer.parseInt(request.getParameter("pedidoId"));
+                new PedidoDAOImpl().anularPedido(pedidoId);
+                response.sendRedirect("pedidos.jsp");
                 break;
             case "logout":
                 session = request.getSession();

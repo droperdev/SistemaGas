@@ -13,6 +13,15 @@ import java.util.List;
  * @author droperdev
  */
 public interface PedidoDAO {
+
     public List<PedidoDTO> obtenerPedidos(int[] ids);
+
     public PedidoDTO obtenerPedido(int pedidoId);
+
+    public void asignarRepartidor(int pedidoId, int repartidorId);
+
+    public void cambiarEstado(int pedidoId);
+
+    public void anularPedido(int pedidoId);
+
 }
