@@ -1,6 +1,6 @@
 <%-- 
-    Document   : registrarPedido
-    Created on : 29/06/2021, 01:42:33 AM
+    Document   : registrarMarca
+    Created on : 01/07/2021, 08:22:49 PM
     Author     : droperdev
 --%>
 
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
+        <title>JSP Page</title>
     </head>
     <body>
-       
+        <h1>Hello World!</h1>
     </body>
 </html>

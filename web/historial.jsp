@@ -85,7 +85,7 @@
         <div class="content">
              <% int[] ids = {3, 4}; %>
             <% List<PedidoDTO> pedidos = new PedidoDAOImpl().obtenerPedidos(ids); %>
-            <div class="card table-responsive">
+            <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr>

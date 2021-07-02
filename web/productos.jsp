@@ -84,6 +84,9 @@
             </div>
         </div>
         <div class="content">
+            <div  class="offset-md-8 col-md-4 offset-lg-8 col-lg-4 offset-xl-10 col-xl-2">
+                 <button type="button" class="btn btn-block btn-primary" onclick="registrarProducto();">Agregar productos</button>
+            </div>
             <div class="marcas">
                 <% List<Marca> marcas = new MarcaDAOImpl().obtenerMarcas(); %>
                 <%! Marca marca;%>

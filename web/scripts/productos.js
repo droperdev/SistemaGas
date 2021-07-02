@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-
 cargarProductos = (marcaId) => {
     $(".marca").removeClass("selected");
     $("#marca" + marcaId).addClass("selected");

@@ -45,18 +45,26 @@ anularPedido = (pedidoId) => {
     $("#content-modal").load("anularPedido.jsp", {pedidoId});
 }
 
-openUser = () => {
+registrarMarca = () => {
     $("#content-modal").empty();
-    $("#MyModal2").modal('show');
-    $(".modal-dialog").removeClass("modal-lg modal-md").addClass("modal-md");
-    $("#MyModalLabel2").text("Registrar usuario");
-    $("#content-modal").load("userAdd.jsp");
-};
+    $("#MyModal").modal('show');
+    $(".modal-dialog").removeClass("modal-lg").addClass("modal-lg");
+    $("#MyModalLabel").text("Agregar marca");
+    $("#content-modal").load("registrarMarca.jsp");
+}
 
-openDeleteUser = (userId) => {
+registrarProducto = () => {
     $("#content-modal").empty();
-    $("#MyModal2").modal('show');
-    $(".modal-dialog").removeClass("modal-lg modal-md").addClass("modal-md");
-    $("#MyModalLabel2").text("Eliminar Usuario N° " + userId);
-    $("#content-modal").load("userDelete.jsp", {userId});
-};
+    $("#MyModal").modal('show');
+    $(".modal-dialog").removeClass("modal-lg").addClass("modal-lg");
+    $("#MyModalLabel").text("Agregar marca");
+    $("#content-modal").load("registrarProducto.jsp");
+}
+
+registrarPedido = () => {
+    $("#content-modal").empty();
+    $("#MyModal").modal('show');
+    $(".modal-dialog").removeClass("modal-lg").addClass("modal-lg");
+    $("#MyModalLabel").text("Agregar marca");
+    $("#content-modal").load("registarPedido.jsp");
+}
