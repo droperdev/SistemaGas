@@ -45,6 +45,11 @@ and open the template in the editor.
     text-align:center;
 }
 
+.producto img {
+    object-fit: cover;
+    height: 300px;
+}
+
 @media (max-width: 800px) {
     .marcas{
         justify-content: flex-start;

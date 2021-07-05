@@ -1,6 +1,6 @@
 <%-- 
-    Document   : eliminarMarca
-    Created on : 04/07/2021, 11:41:25 PM
+    Document   : eliminarProducto
+    Created on : 05/07/2021, 12:53:06 AM
     Author     : droperdev
 --%>
 
@@ -11,13 +11,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-      <% int marcaId = Integer.parseInt(request.getParameter("marcaId"));%>
+    <body>
+        <% int productoId = Integer.parseInt(request.getParameter("productoId"));%>
         <div class="container">
-            <h5>¿Realmente desea eliminar la marca?</h5>
+            <h5>¿Realmente desea eliminar el producto?</h5>
             <br>
-            <form method="POST" action="Main?action=eliminarMarca&marcaId=<%=marcaId%>">
+            <form method="POST" action="Main?action=eliminarProducto&productoId=<%=productoId%>">
                 <input type="submit" class="btn btn-primary btn-block" value="Aceptar">
             </form>
         </div>
     </body>
+</body>
 </html>

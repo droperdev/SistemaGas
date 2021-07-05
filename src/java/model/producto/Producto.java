@@ -17,11 +17,20 @@ public class Producto {
     private String descripcion;
     private String fotoUrl;
     private int stock;
-    private int precio;
+    private double precio;
     private int estado;
     private int creacion;
 
     public Producto() {
+    }
+
+    public Producto(int marcaId, String nombre, String descripcion, String fotoUrl, int stock, double precio) {
+        this.marcaId = marcaId;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fotoUrl = fotoUrl;
+        this.stock = stock;
+        this.precio = precio;
     }
 
     public int getId() {
@@ -72,11 +81,11 @@ public class Producto {
         this.stock = stock;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 

@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import model.marca.Marca;
 import model.marca.MarcaDAOImpl;
 import model.pedido.PedidoDAOImpl;
+import model.producto.Producto;
+import model.producto.ProductoDAOImpl;
 
 /**
  *
@@ -70,6 +72,46 @@ public class Main extends HttpServlet {
             case "productos":
                 response.sendRedirect("productos.jsp");
                 break;
+            case "registrarProducto": {
+                int marcaId = Integer.parseInt(request.getParameter("marcaId"));
+                String nombre = request.getParameter("nombre");
+                String descripcion = request.getParameter("descripcion");
+                String fotoUrl = request.getParameter("fotoUrl");
+                int stock = Integer.parseInt(request.getParameter("stock"));
+                double precio = Double.parseDouble(request.getParameter("precio"));
+
+                Producto producto = new Producto(marcaId, nombre, descripcion, fotoUrl, stock, precio);
+
+                new ProductoDAOImpl().registrarProducto(producto);
+                response.sendRedirect("productos.jsp");
+                break;
+            }
+            case "actualizarProducto": {
+                int productoId = Integer.parseInt(request.getParameter("productoId"));
+                String nombre = request.getParameter("nombre");
+                String descripcion = request.getParameter("descripcion");
+                String fotoUrl = request.getParameter("fotoUrl");
+                int stock = Integer.parseInt(request.getParameter("stock"));
+                double precio = Double.parseDouble(request.getParameter("precio"));
+
+                Producto producto = new Producto();
+                producto.setId(productoId);
+                producto.setNombre(nombre);
+                producto.setDescripcion(descripcion);
+                producto.setFotoUrl(fotoUrl);
+                producto.setStock(stock);
+                producto.setPrecio(precio);
+
+                new ProductoDAOImpl().actualizarProducto(producto);
+                response.sendRedirect("productos.jsp");
+                break;
+            }
+            case "eliminarProducto": {
+                int productoId = Integer.parseInt(request.getParameter("productoId"));
+                new ProductoDAOImpl().eliminarProducto(productoId);
+                response.sendRedirect("productos.jsp");
+                break;
+            }
             case "pedidos":
                 response.sendRedirect("pedidos.jsp");
                 break;

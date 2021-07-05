@@ -72,9 +72,25 @@ actualizarMarca = (marcaId) => {
 registrarProducto = () => {
     $("#content-modal").empty();
     $("#MyModal").modal('show');
-    $(".modal-dialog").removeClass("modal-lg").addClass("modal-lg");
+    $(".modal-dialog").removeClass("modal-lg modal-md").addClass("modal-md");
     $("#MyModalLabel").text("Agregar producto");
     $("#content-modal").load("registrarProducto.jsp");
+}
+
+eliminarProducto = (productoId) => {
+    $("#content-modal").empty();
+    $("#MyModal").modal('show');
+    $(".modal-dialog").removeClass("modal-lg modal-md").addClass("modal-md");
+    $("#MyModalLabel").text("Eliminar producto N° " + productoId);
+    $("#content-modal").load("eliminarProducto.jsp", {productoId});
+}
+
+actualizarProducto = (productoId) => {
+    $("#content-modal").empty();
+    $("#MyModal").modal('show');
+    $(".modal-dialog").removeClass("modal-lg modal-md").addClass("modal-md");
+    $("#MyModalLabel").text("Actualizar producto N° " + productoId);
+    $("#content-modal").load("actualizarProducto.jsp", {productoId});
 }
 
 registrarPedido = () => {

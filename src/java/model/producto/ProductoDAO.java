@@ -13,5 +13,14 @@ import java.util.List;
  * @author droperdev
  */
 public interface ProductoDAO {
+
     List<ProductoDTO> obtenerProductos(int marcaId);
+
+    ProductoDTO obtenerProducto(int productoId);
+
+    void registrarProducto(Producto producto);
+
+    void actualizarProducto(Producto producto);
+
+    void eliminarProducto(int productoId);
 }
