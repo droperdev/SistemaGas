@@ -78,22 +78,28 @@
         <div class="header">
             <div class="content-header">
                 <span class="title">Marcas</span>
+                <button type="button" class="btn btn-primary" onclick="registrarMarca();">Agregar Marca</button>
             </div>
         </div>
         <div class="content">
-            <div  class="offset-md-8 col-md-4 offset-lg-8 col-lg-4 offset-xl-10 col-xl-2">
-                 <button type="button" class="btn btn-block btn-primary" onclick="registrarMarca();">Agregar Marca</button>
-            </div>
             <div class="marcas">
                 <% List<Marca> marcas = new MarcaDAOImpl().obtenerMarcas(); %>
-            <%! Marca marca;%>
-            <% for (int i = 0; i < marcas.size(); i++) { %>
-            <% marca = marcas.get(i); %>
-            <div class="card marca">
-               <img src="<%=marca.getLogo() %>" />
-               <%=marca.getNombre() %>
-            </div>
-            <% }%>
+                <%! Marca marca;%>
+                <% for (int i = 0; i < marcas.size(); i++) { %>
+                <% marca = marcas.get(i);%>
+                <div class="card marca">
+                    <div class="dropdown">
+                        <a class="btn fa fa-ellipsis-v" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <button class="dropdown-item" onclick="actualizarMarca('<%=marca.getId()%>');" ><i class="fa fa-pencil"></i>&nbsp;&nbsp;&nbsp;Actualizar marca</button>
+                            <button class="dropdown-item" onclick="eliminarMarca('<%=marca.getId()%>');" ><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;Eliminar marca</button>
+                        </div>
+                    </div>
+                    <img src="<%=marca.getLogo()%>" />
+                    <%=marca.getNombre()%>
+                </div>
+                <% }%>
             </div>
         </div>
         <div class="modal fade" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" >

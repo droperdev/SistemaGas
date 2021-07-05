@@ -30,7 +30,8 @@ public class MarcaDAOImpl implements MarcaDAO {
     public List<Marca> obtenerMarcas() {
         ArrayList<Marca> marcas = new ArrayList<>();
         Marca marca = null;
-        String query = "SELECT m.Id, m.Nombre, m.Logo, m.Estado FROM Marca m";
+        String query = "SELECT m.Id, m.Nombre, m.Logo, m.Estado FROM Marca m "
+                + "WHERE m.Estado = 1";
         con = cn.getConnection();
         try {
             ps = con.prepareStatement(query);
@@ -49,4 +50,70 @@ public class MarcaDAOImpl implements MarcaDAO {
         return marcas;
     }
 
+    @Override
+    public Marca obtenerMarca(int marcaId) {
+        Marca marca = null;
+        String query = "SELECT m.Id, m.Nombre, m.Logo, m.Estado FROM Marca m "
+                + "WHERE m.Id = ?";
+        con = cn.getConnection();
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1, marcaId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                marca = new Marca();
+                marca.setId(rs.getInt("Id"));
+                marca.setNombre(rs.getString("Nombre"));
+                marca.setLogo(rs.getString("Logo"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MarcaDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return marca;
+    }
+
+    @Override
+    public void registrarMarca(Marca marca) {
+        String query = "INSERT INTO Marca(Nombre, Logo) "
+                + "VALUES(?,?)";
+        con = cn.getConnection();
+        try {
+            ps = con.prepareStatement(query);
+            ps.setString(1, marca.getNombre());
+            ps.setString(2, marca.getLogo());
+            ps.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(MarcaDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void eliminarMarca(int marcaId) {
+        String query = "UPDATE Marca SET Estado = 0 "
+                + "WHERE Id = ?";
+        con = cn.getConnection();
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1, marcaId);
+            ps.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(MarcaDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void actualizarMarca(Marca marca) {
+        String query = "UPDATE Marca SET Nombre = ?, Logo = ? "
+                + "WHERE Id = ?";
+        con = cn.getConnection();
+        try {
+            ps = con.prepareStatement(query);
+            ps.setString(1, marca.getNombre());
+            ps.setString(2, marca.getLogo());
+            ps.setInt(3, marca.getId());
+            ps.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(MarcaDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

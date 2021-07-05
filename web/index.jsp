@@ -21,8 +21,8 @@
 
     </head>
     <body>
-        <%            String message = (String) session.getAttribute("mensaje");
-
+        <%            
+          String message = (String) session.getAttribute("mensaje");
         %>
         <div class="card content-login">
             <img src="./assets/logo.png" alt="">

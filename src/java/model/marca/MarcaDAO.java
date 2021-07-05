@@ -12,5 +12,14 @@ import java.util.List;
  * @author droperdev
  */
 public interface MarcaDAO {
-     List<Marca> obtenerMarcas();
+
+    List<Marca> obtenerMarcas();
+
+    Marca obtenerMarca(int marcaId);
+
+    void registrarMarca(Marca marca);
+
+    void eliminarMarca(int marcaId);
+
+    void actualizarMarca(Marca marca);
 }

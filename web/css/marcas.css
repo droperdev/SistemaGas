@@ -21,6 +21,12 @@ and open the template in the editor.
     text-align:center;
 }
 
+.marca .dropdown{
+    position: absolute;
+    right: 0;
+    padding:8px;
+}
+
 .marca img {
     object-fit: cover;
     height: 200px;

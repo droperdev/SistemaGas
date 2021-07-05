@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.marca.Marca;
+import model.marca.MarcaDAOImpl;
 import model.pedido.PedidoDAOImpl;
 
 /**
@@ -41,6 +43,30 @@ public class Main extends HttpServlet {
             case "marcas":
                 response.sendRedirect("marcas.jsp");
                 break;
+            case "registrarMarca": {
+                String nombreMarca = request.getParameter("nombre");
+                String fotoUrl = request.getParameter("fotoUrl");
+
+                Marca marca = new Marca(nombreMarca, fotoUrl);
+                new MarcaDAOImpl().registrarMarca(marca);
+                response.sendRedirect("marcas.jsp");
+                break;
+            }
+            case "eliminarMarca": {
+                int marcaId = Integer.parseInt(request.getParameter("marcaId"));
+                new MarcaDAOImpl().eliminarMarca(marcaId);
+                response.sendRedirect("marcas.jsp");
+                break;
+            }
+            case "actualizarMarca": {
+                int marcaId = Integer.parseInt(request.getParameter("marcaId"));
+                String nombre = request.getParameter("nombre");
+                String fotoUrl = request.getParameter("fotoUrl");
+                Marca marca = new Marca(marcaId, nombre, fotoUrl);
+                new MarcaDAOImpl().actualizarMarca(marca);
+                response.sendRedirect("marcas.jsp");
+                break;
+            }
             case "productos":
                 response.sendRedirect("productos.jsp");
                 break;

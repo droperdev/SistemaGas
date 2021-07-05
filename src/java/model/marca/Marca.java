@@ -26,6 +26,17 @@ public class Marca {
         this.estado = estado;
     }
 
+    public Marca(int id, String nombre, String logo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.logo = logo;
+    }
+
+    public Marca(String nombre, String photoUrl) {
+        this.nombre = nombre;
+        this.logo = photoUrl;
+    }
+
     @Override
     public String toString() {
         return "Marca{" + "id=" + id + ", nombre=" + nombre + ", logo=" + logo + ", estado=" + estado + '}';

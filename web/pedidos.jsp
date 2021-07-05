@@ -81,12 +81,10 @@
         <div class="header">
             <div class="content-header">
                 <span class="title">Pedidos</span>
+                 <button type="button" class="btn btn-primary" onclick="registrarPedido();">Agregar pedido</button>
             </div>
         </div>
         <div class="content">
-            <div  class="offset-md-8 col-md-4 offset-lg-8 col-lg-4 offset-xl-10 col-xl-2">
-                 <button type="button" class="btn btn-block btn-primary" onclick="registrarPedido();">Agregar pedido</button>
-            </div>
              <% int[] ids = {1, 2}; %>
             <% List<PedidoDTO> pedidos = new PedidoDAOImpl().obtenerPedidos(ids); %>
             <div class="table-responsive">

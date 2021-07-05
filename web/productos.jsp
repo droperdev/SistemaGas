@@ -81,12 +81,10 @@
         <div class="header">
             <div class="content-header">
                 <span class="title">Productos</span>
+                 <button type="button" class="btn btn-primary" onclick="registrarProducto();">Agregar productos</button>
             </div>
         </div>
         <div class="content">
-            <div  class="offset-md-8 col-md-4 offset-lg-8 col-lg-4 offset-xl-10 col-xl-2">
-                 <button type="button" class="btn btn-block btn-primary" onclick="registrarProducto();">Agregar productos</button>
-            </div>
             <div class="marcas">
                 <% List<Marca> marcas = new MarcaDAOImpl().obtenerMarcas(); %>
                 <%! Marca marca;%>
@@ -117,6 +115,7 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="scripts/main.js"></script>
         <script src="scripts/productos.js"></script>
     </body>
 </html>
