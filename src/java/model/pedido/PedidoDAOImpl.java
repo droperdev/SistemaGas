@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 import model.comprobante.Comprobante;
 import model.estado.Estado;
 import model.metodoPago.MetodoPago;
-import model.tipoPago.TipoPedido;
+import model.tipoPedido.TipoPedido;
 
 /**
  *
@@ -258,6 +258,37 @@ public class PedidoDAOImpl implements PedidoDAO {
         } catch (SQLException ex) {
             Logger.getLogger(PedidoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public int registrarPedido(Pedido pedido) {
+        int id = 0;
+        String sql
+                = "INSERT INTO Pedido(NroDoc, DireccionId, EstadoId,ComprobanteId, TipoPedidoId, MetodoPagoId) "
+                + "VALUES(?,?,?,?,?,?)";
+        con = cn.getConnection();
+        try {
+            ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, pedido.getNroDoc());
+            ps.setInt(2, pedido.getDireccionId());
+            ps.setInt(3, pedido.getEstadoId());
+            ps.setInt(4, pedido.getComprobanteId());
+            ps.setInt(5, pedido.getTipoPedidoId());
+            ps.setInt(6, pedido.getMetodoPagoId());
+            ps.execute();
+
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    id = generatedKeys.getInt(1);
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
     }
 
 }

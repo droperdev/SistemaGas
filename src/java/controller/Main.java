@@ -5,17 +5,26 @@
  */
 package controller;
 
+import com.google.gson.Gson;
+import dto.DetalleDTO;
+import dto.ProductoDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.comprobante.Comprobante;
 import model.marca.Marca;
 import model.marca.MarcaDAOImpl;
+import model.pedido.Pedido;
 import model.pedido.PedidoDAOImpl;
+import model.pedidoDetalle.PedidoDetalle;
+import model.pedidoDetalle.PedidoDetalleDAOImpl;
 import model.producto.Producto;
 import model.producto.ProductoDAOImpl;
 
@@ -42,6 +51,42 @@ public class Main extends HttpServlet {
         String action = request.getParameter("action");
 
         switch (action) {
+            case "obtenerProductos": {
+                int marcaId = Integer.parseInt(request.getParameter("marcaId"));
+                List<ProductoDTO> productos = new ProductoDAOImpl().obtenerProductos(marcaId);
+                write(response, productos);
+                break;
+            }
+            case "agregarDetalle": {
+                session = request.getSession();
+                int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+                String marca = request.getParameter("marca");
+                double precio = Double.parseDouble(request.getParameter("precio"));
+                String producto = request.getParameter("producto");
+                int productoId = Integer.parseInt(request.getParameter("productoId"));
+
+                List<DetalleDTO> detalles;
+                Object object = session.getAttribute("detalles");
+                if (object != null) {
+                    detalles = (List) object;
+                    DetalleDTO detalle = new DetalleDTO(cantidad, productoId, marca + " - " + producto, precio);
+
+                    int index = obtenerPosicionSiExiste(detalles, detalle);
+                    if (index != -1) {
+                        detalles.get(index).setCantidad(detalles.get(index).getCantidad() + detalle.getCantidad());
+                    } else {
+                        detalles.add(detalle);
+                    }
+                    session.setAttribute("detalles", detalles);
+                } else {
+                    detalles = new ArrayList();
+                    DetalleDTO detalle = new DetalleDTO(cantidad, productoId, marca + " - " + producto, precio);
+                    detalles.add(detalle);
+                    session.setAttribute("detalles", detalles);
+                }
+                write(response, true);
+                break;
+            }
             case "marcas":
                 response.sendRedirect("marcas.jsp");
                 break;
@@ -115,6 +160,35 @@ public class Main extends HttpServlet {
             case "pedidos":
                 response.sendRedirect("pedidos.jsp");
                 break;
+            case "registrarPedido": {
+                session = request.getSession();
+                int nroDoc = Integer.parseInt(request.getParameter("nroDoc"));
+                int direccionId = Integer.parseInt(request.getParameter("direccionId"));
+                int metodoPagoId = Integer.parseInt(request.getParameter("metodoPagoId"));
+                int comprobanteId = Integer.parseInt(request.getParameter("comprobanteId"));
+                int tipoPedidoId = Integer.parseInt(request.getParameter("tipoPedidoId"));
+
+                Pedido pedido = new Pedido(
+                        nroDoc, direccionId, 1, comprobanteId, tipoPedidoId, metodoPagoId);
+
+                int pedidoId = new PedidoDAOImpl().registrarPedido(pedido);
+
+                List<DetalleDTO> detalles = (List) session.getAttribute("detalles");
+                PedidoDetalle pedidoDetalle;
+                for (int i = 0; i < detalles.size(); i++) {
+                    pedidoDetalle = new PedidoDetalle();
+                    pedidoDetalle.setPedidoId(pedidoId);
+                    pedidoDetalle.setProductoId(detalles.get(i).getProductoId());
+                    pedidoDetalle.setCantidad(detalles.get(i).getCantidad());
+                    pedidoDetalle.setPrecio(detalles.get(i).getPrecio());
+
+                    new PedidoDetalleDAOImpl().registrarDetalle(pedidoDetalle);
+                }
+                session.removeAttribute("detalles");
+
+                response.sendRedirect("pedidos.jsp");
+                break;
+            }
             case "historial":
                 response.sendRedirect("historial.jsp");
                 break;
@@ -183,5 +257,22 @@ public class Main extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void write(HttpServletResponse response, Object object) throws IOException {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(new Gson().toJson(object));
+    }
+
+    private int obtenerPosicionSiExiste(List<DetalleDTO> detalles, DetalleDTO detalle) {
+        int index = -1;
+        for (int i = 0; i < detalles.size(); i++) {
+            if (detalles.get(i).getProductoId() == detalle.getProductoId()) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
 
 }

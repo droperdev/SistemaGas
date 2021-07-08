@@ -62,7 +62,7 @@ eliminarMarca = (marcaId) => {
 }
 
 actualizarMarca = (marcaId) => {
-     $("#content-modal").empty();
+    $("#content-modal").empty();
     $("#MyModal").modal('show');
     $(".modal-dialog").removeClass("modal-lg modal-md").addClass("modal-md");
     $("#MyModalLabel").text("Actualizar marca N° " + marcaId);
@@ -93,10 +93,63 @@ actualizarProducto = (productoId) => {
     $("#content-modal").load("actualizarProducto.jsp", {productoId});
 }
 
-registrarPedido = () => {
+abrirBuscarCliente = () => {
     $("#content-modal").empty();
     $("#MyModal").modal('show');
-    $(".modal-dialog").removeClass("modal-lg").addClass("modal-lg");
+    $(".modal-dialog").removeClass("modal-md modal-lg modal-xl").addClass("modal-md");
+    $("#MyModalLabel").text("Buscar cliente");
+    $("#content-modal").load("buscarCliente.jsp");
+}
+
+
+buscarCliente = () => {
+    var nroDocumento = document.getElementById("nroDocumento").value;
+    $("#direcciones").load("direcciones.jsp", {nroDocumento});
+}
+
+registrarCliente = () => {
+    var nroDocumento = document.getElementById("nroDocumento").value;
+    $("#content-modal").empty();
+    $("#MyModal").modal('show');
+    $(".modal-dialog").removeClass("modal-md").addClass("modal-md");
+    $("#MyModalLabel").text("Registrar cliente");
+    $("#content-modal").load("registrarCliente.jsp", {nroDocumento});
+}
+
+abrirRegistrarPedido = (nroDocumento, direccionId) => {
+    $("#content-modal").empty();
+    $("#MyModal").modal('show');
+    $(".modal-dialog").removeClass("modal-xl").addClass("modal-xl");
     $("#MyModalLabel").text("Agregar pedido");
-    $("#content-modal").load("registarPedido.jsp");
+    $("#content-modal").load("registrarPedido.jsp", {nroDocumento, direccionId});
+}
+
+agregarProducto = () => {
+    var cantidad = $("#cantidad").val();
+    if (cantidad === '') {
+        alert("Ingrese una cantidad");
+        return
+    }
+    $("#detalle").empty();
+    var productoId = $("select.productos").children("option:selected").val();
+    var precio = $("select.productos").children("option:selected").attr('precio');
+    var marca = $("select.marcas").children("option:selected").text();
+    var producto = $("select.productos").children("option:selected").text();
+    $.ajax({
+        url: "Main?action=agregarDetalle",
+        type: "POST",
+        data: {
+            cantidad,
+            productoId,
+            precio,
+            marca,
+            producto
+        },
+        dataType: "json",
+        success: function (data) {
+            $("#detalle").load("registrarDetallePedido.jsp");
+            $("#cantidad").val('');
+        }
+    })
+
 }

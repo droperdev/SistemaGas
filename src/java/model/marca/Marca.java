@@ -15,6 +15,7 @@ public class Marca {
     private String nombre;
     private String logo;
     private boolean estado;
+    
 
     public Marca() {
     }

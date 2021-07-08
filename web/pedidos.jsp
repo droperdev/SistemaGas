@@ -81,11 +81,11 @@
         <div class="header">
             <div class="content-header">
                 <span class="title">Pedidos</span>
-                 <button type="button" class="btn btn-primary" onclick="registrarPedido();">Agregar pedido</button>
+                <button type="button" class="btn btn-primary" onclick="abrirBuscarCliente();">Agregar pedido</button>
             </div>
         </div>
         <div class="content">
-             <% int[] ids = {1, 2}; %>
+            <% int[] ids = {1, 2}; %>
             <% List<PedidoDTO> pedidos = new PedidoDAOImpl().obtenerPedidos(ids); %>
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -118,7 +118,7 @@
                             <td><%=pedido.getComprobante().getNombre()%></td>
                             <td><%=pedido.getTipoPedido().getNombre()%></td>
                             <% if (pedido.getUsuario().getNombre() != null) {%>
-                            <td class="font-weight-bold"><%=pedido.getUsuario().getNombre()+ " " + pedido.getUsuario().getApellido()%></td>
+                            <td class="font-weight-bold"><%=pedido.getUsuario().getNombre() + " " + pedido.getUsuario().getApellido()%></td>
                             <% } else {%>
                             <td class="font-weight-bold">-</td>
                             <%}%>
@@ -165,6 +165,19 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="scripts/main.js"></script>
+        <script >
+                                            function prueba() {
+                                                $.ajax({
+                                                    url: "Main?action=prueba",
+                                                    type: "POST",
+                                                    dataType: "json",
+                                                    success: function (data) {
+                                                        console.log(data);
+                                                    }
+                                                });
+                                            }
+
+        </script>
     </body>
 </html>
 <%

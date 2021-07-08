@@ -3,35 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.pedidoDetalle;
+package dto;
 
 /**
  *
  * @author droperdev
  */
-public class PedidoDetalle {
+public class DetalleDTO {
 
-    private int pedidoId;
-    private int productoId;
     private int cantidad;
+    private int productoId;
+    private String nombre;
     private double precio;
 
-    public PedidoDetalle() {
+    public DetalleDTO() {
     }
 
-    public PedidoDetalle(int pedidoId, int productoId, int cantidad, double precio) {
-        this.pedidoId = pedidoId;
-        this.productoId = productoId;
+    
+        
+    public DetalleDTO(int cantidad, int productoId, String nombre, double precio) {
         this.cantidad = cantidad;
+        this.productoId = productoId;
+        this.nombre = nombre;
         this.precio = precio;
     }
 
-    public int getPedidoId() {
-        return pedidoId;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setPedidoId(int pedidoId) {
-        this.pedidoId = pedidoId;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public int getProductoId() {
@@ -42,12 +44,12 @@ public class PedidoDetalle {
         this.productoId = productoId;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public double getPrecio() {

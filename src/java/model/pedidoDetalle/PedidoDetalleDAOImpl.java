@@ -28,7 +28,7 @@ public class PedidoDetalleDAOImpl implements PedidoDetalleDAO {
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
-    
+
     @Override
     public List<PedidoDetalleDTO> obtenerDetalle(int pedidoId) {
         List<PedidoDetalleDTO> pedidoDetalles = new ArrayList<>();
@@ -62,7 +62,7 @@ public class PedidoDetalleDAOImpl implements PedidoDetalleDAO {
                 );
                 pedidoDetalle.setCantidad(rs.getInt("Cantidad"));
                 pedidoDetalle.setPrecio(rs.getDouble("Precio"));
-             
+
                 pedidoDetalles.add(pedidoDetalle);
             }
         } catch (SQLException ex) {
@@ -70,5 +70,24 @@ public class PedidoDetalleDAOImpl implements PedidoDetalleDAO {
         }
         return pedidoDetalles;
     }
-    
+
+    @Override
+    public void registrarDetalle(PedidoDetalle pedidoDetalle) {
+        String sql
+                = "INSERT INTO DetallePedido(PedidoId, ProductoId, Cantidad, Precio) "
+                + "VALUES(?, ?, ?, ?)";
+        con = cn.getConnection();
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, pedidoDetalle.getPedidoId());
+            ps.setInt(2, pedidoDetalle.getProductoId());
+            ps.setInt(3, pedidoDetalle.getCantidad());
+            ps.setDouble(4, pedidoDetalle.getPrecio());
+            ps.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoDetalleDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

@@ -12,6 +12,7 @@ package dto;
 public class PedidoDetalleDTO {
     private int id;
     private ProductoDTO producto;
+    private String nombre;
     private int cantidad;
     private Double precio;
 

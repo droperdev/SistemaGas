@@ -24,4 +24,6 @@ public interface PedidoDAO {
 
     public void anularPedido(int pedidoId);
 
+    public int registrarPedido(Pedido pedido);
+
 }

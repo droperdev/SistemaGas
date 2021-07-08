@@ -9,7 +9,7 @@ import java.sql.Date;
 import model.comprobante.Comprobante;
 import model.estado.Estado;
 import model.metodoPago.MetodoPago;
-import model.tipoPago.TipoPedido;
+import model.tipoPedido.TipoPedido;
 
 /**
  *

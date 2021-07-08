@@ -3,18 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.pedidoDetalle;
+package model.comprobante;
 
-import dto.PedidoDetalleDTO;
 import java.util.List;
 
 /**
  *
  * @author droperdev
  */
-public interface PedidoDetalleDAO {
-
-    public List<PedidoDetalleDTO> obtenerDetalle(int pedidoId);
-
-    public void registrarDetalle(PedidoDetalle pedidoDetalle);
+public interface ComprobanteDAO {
+    public List<Comprobante> obtenerComprobantes();
 }
