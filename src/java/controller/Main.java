@@ -9,7 +9,6 @@ import com.google.gson.Gson;
 import dto.DetalleDTO;
 import dto.ProductoDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -18,7 +17,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.comprobante.Comprobante;
+import model.cliente.Cliente;
+import model.cliente.ClienteDAOImpl;
+import model.direccion.Direccion;
+import model.direccion.DireccionDAOImpl;
 import model.marca.Marca;
 import model.marca.MarcaDAOImpl;
 import model.pedido.Pedido;
@@ -51,6 +53,28 @@ public class Main extends HttpServlet {
         String action = request.getParameter("action");
 
         switch (action) {
+            case "registrarCliente": {
+                int nroDoc = Integer.parseInt(request.getParameter("nroDoc"));
+                String nombre = request.getParameter("nombre");
+                String celular = request.getParameter("celular");
+                String correo = request.getParameter("correo");
+
+                String address = request.getParameter("direccion");
+                String referencia = request.getParameter("referencia");
+
+                Double latitud = Double.parseDouble(request.getParameter("latitud"));
+                Double longitud = Double.parseDouble(request.getParameter("longitud"));
+
+                Cliente cliente = new Cliente(nroDoc, nombre, celular, correo);
+
+                new ClienteDAOImpl().registrarCliente(cliente);
+
+                Direccion direccion = new Direccion(nroDoc, address, referencia, latitud, longitud);
+                int direccionId = new DireccionDAOImpl().registrarDireccion(direccion);
+                write(response, new Id(nroDoc, direccionId));
+
+                break;
+            }
             case "obtenerProductos": {
                 int marcaId = Integer.parseInt(request.getParameter("marcaId"));
                 List<ProductoDTO> productos = new ProductoDAOImpl().obtenerProductos(marcaId);
@@ -273,6 +297,18 @@ public class Main extends HttpServlet {
             }
         }
         return index;
+    }
+
+    public class Id {
+
+        private int nroDoc;
+        private int direccionId;
+
+        public Id(int nroDoc, int direccionId) {
+            this.nroDoc = nroDoc;
+            this.direccionId = direccionId;
+        }
+
     }
 
 }

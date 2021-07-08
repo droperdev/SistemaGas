@@ -27,7 +27,7 @@ public class DireccionDAOImpl implements DireccionDAO {
     ResultSet rs;
 
     @Override
-    public List<Direccion> obtenerDirecciones(int nroDoc) {
+    public List<Direccion> obtenerDirecciones(Long nroDoc) {
         ArrayList<Direccion> direcciones = new ArrayList<>();
         Direccion direccion = null;
         String query = "SELECT cd.Id, cd.Direccion, cd.Referencia, cd.Latitud, cd.Longitud "
@@ -36,7 +36,7 @@ public class DireccionDAOImpl implements DireccionDAO {
         con = cn.getConnection();
         try {
             ps = con.prepareStatement(query);
-            ps.setInt(1, nroDoc);
+            ps.setLong(1, nroDoc);
             rs = ps.executeQuery();
             while (rs.next()) {
                 direccion = new Direccion();
@@ -76,5 +76,36 @@ public class DireccionDAOImpl implements DireccionDAO {
             Logger.getLogger(DireccionDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return direccion;
+    }
+
+    @Override
+    public int registrarDireccion(Direccion direccion) {
+        int id = 0;
+        String sql
+                = "INSERT INTO ClienteDireccion(NroDoc, Direccion, Referencia, Latitud, Longitud) "
+                + "VALUES(?,?,?,?,?)";
+        con = cn.getConnection();
+        try {
+            ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, direccion.getNroDoc());
+            ps.setString(2, direccion.getDireccion());
+            ps.setString(3, direccion.getReferencia());
+            ps.setDouble(4, direccion.getLatitud());
+            ps.setDouble(5, direccion.getLongitud());
+
+            ps.execute();
+
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    id = generatedKeys.getInt(1);
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DireccionDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
     }
 }

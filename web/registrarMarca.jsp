@@ -9,10 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+       
     </head>
     <body>
-         <div class="container">
+        <div class="container">
             <form method="POST" action="Main?action=registrarMarca">
                 <div >
                     <div class="form-group">

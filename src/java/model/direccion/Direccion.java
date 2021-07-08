@@ -13,21 +13,29 @@ public class Direccion {
 
     private int id;
     private int nroDoc;
-    private String Direccion;
-    private String Referencia;
-    private double Latitud;
-    private double Longitud;
+    private String direccion;
+    private String referencia;
+    private double latitud;
+    private double longitud;
 
     public Direccion() {
     }
 
-    public Direccion(int id, int nroDoc, String Direccion, String Referencia, double Latitud, double Longitud) {
+    public Direccion(int nroDoc, String direccion, String referencia, double latitud, double longitud) {
+        this.nroDoc = nroDoc;
+        this.direccion = direccion;
+        this.referencia = referencia;
+        this.latitud = latitud;
+        this.longitud = longitud;
+    }
+
+    public Direccion(int id, int nroDoc, String direccion, String referencia, double latitud, double longitud) {
         this.id = id;
         this.nroDoc = nroDoc;
-        this.Direccion = Direccion;
-        this.Referencia = Referencia;
-        this.Latitud = Latitud;
-        this.Longitud = Longitud;
+        this.direccion = direccion;
+        this.referencia = referencia;
+        this.latitud = latitud;
+        this.longitud = longitud;
     }
 
     public int getId() {
@@ -47,34 +55,35 @@ public class Direccion {
     }
 
     public String getDireccion() {
-        return Direccion;
+        return direccion;
     }
 
-    public void setDireccion(String Direccion) {
-        this.Direccion = Direccion;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public String getReferencia() {
-        return Referencia;
+        return referencia;
     }
 
-    public void setReferencia(String Referencia) {
-        this.Referencia = Referencia;
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
     }
 
     public double getLatitud() {
-        return Latitud;
+        return latitud;
     }
 
-    public void setLatitud(double Latitud) {
-        this.Latitud = Latitud;
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
     }
 
     public double getLongitud() {
-        return Longitud;
+        return longitud;
     }
 
-    public void setLongitud(double Longitud) {
-        this.Longitud = Longitud;
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
     }
+
 }

@@ -13,27 +13,26 @@ public class Cliente {
 
     private int nroDoc;
     private String nombre;
-    private String Celular;
-    private String Correo;
-    private boolean Estado;
+    private String celular;
+    private String correo;
+    private boolean estado;
 
     public Cliente() {
     }
 
-    public Cliente(int nroDoc, String nombre, String Celular, String Correo, boolean Estado) {
+    public Cliente(int nroDoc, String nombre, String celular, String correo, boolean estado) {
         this.nroDoc = nroDoc;
         this.nombre = nombre;
-        this.Celular = Celular;
-        this.Correo = Correo;
-        this.Estado = Estado;
+        this.celular = celular;
+        this.correo = correo;
+        this.estado = estado;
     }
 
-    public String getCelular() {
-        return Celular;
-    }
-
-    public void setCelular(String Celular) {
-        this.Celular = Celular;
+    public Cliente(int nroDoc, String nombre, String celular, String correo) {
+        this.nroDoc = nroDoc;
+        this.nombre = nombre;
+        this.celular = celular;
+        this.correo = correo;
     }
 
     public int getNroDoc() {
@@ -52,20 +51,28 @@ public class Cliente {
         this.nombre = nombre;
     }
 
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
-    public boolean getEstado() {
-        return Estado;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setEstado(boolean Estado) {
-        this.Estado = Estado;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
 }

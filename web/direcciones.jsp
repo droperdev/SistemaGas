@@ -17,7 +17,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <% int nroDocumento = Integer.parseInt(request.getParameter("nroDocumento"));%>
+        <% Long nroDocumento = Long.parseLong(request.getParameter("nroDocumento"));%>
         <% Cliente cliente = new ClienteDAOImpl().obtenerCliente(nroDocumento);%>
         <% if (cliente != null) {%>
         <div class="form-group">
@@ -50,7 +50,7 @@
         <div class="text-center">
             No se encontro ningun cliente con este documento, ¿Desea registrarlo?<br><br>
             <div class="form-group">
-                <input class="btn btn-primary" type="button" value="Registrar" onclick="registrarCliente();">
+                <input class="btn btn-primary" type="button" value="Registrar" onclick="abrirRegistrarCliente();">
             </div>
         </div>
         <%}%>

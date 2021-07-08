@@ -13,7 +13,9 @@ import java.util.List;
  */
 public interface DireccionDAO {
 
-    List<Direccion> obtenerDirecciones(int nroDoc);
+    List<Direccion> obtenerDirecciones(Long nroDoc);
 
     Direccion obtenerDireccion(int direccionId);
+
+    int registrarDireccion(Direccion direccion);
 }

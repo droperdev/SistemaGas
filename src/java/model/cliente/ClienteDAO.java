@@ -11,5 +11,7 @@ package model.cliente;
  */
 public interface ClienteDAO {
 
-    Cliente obtenerCliente(int nroDocumento);
+    Cliente obtenerCliente(long nroDocumento);
+
+    public void registrarCliente(Cliente cliente);
 }

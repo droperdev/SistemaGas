@@ -107,13 +107,31 @@ buscarCliente = () => {
     $("#direcciones").load("direcciones.jsp", {nroDocumento});
 }
 
-registrarCliente = () => {
+abrirRegistrarCliente = () => {
     var nroDocumento = document.getElementById("nroDocumento").value;
     $("#content-modal").empty();
     $("#MyModal").modal('show');
-    $(".modal-dialog").removeClass("modal-md").addClass("modal-md");
+    $(".modal-dialog").removeClass("modal-md modal-lg").addClass("modal-lg");
     $("#MyModalLabel").text("Registrar cliente");
     $("#content-modal").load("registrarCliente.jsp", {nroDocumento});
+}
+
+registrarCliente = () => {
+    var data = getFormObj('form-registrar');
+    console.log(data);
+    $.ajax({
+        url: "Main?action=registrarCliente",
+        type: "POST",
+        data: data,
+        dataType: "json",
+        success: function (data) {
+            $("#content-modal").empty();
+            $(".modal-dialog").removeClass("modal-md modal-lg").addClass("modal-xl");
+            $("#content-modal").load("registrarPedido.jsp", {nroDocumento: data.nroDoc, direccionId: data.direccionId});
+        }, error: function (err) {
+            console.log(err);
+        }
+    })
 }
 
 abrirRegistrarPedido = (nroDocumento, direccionId) => {
@@ -152,4 +170,14 @@ agregarProducto = () => {
         }
     })
 
+}
+
+
+function getFormObj(formId) {
+    var formObj = {};
+    var inputs = $('#' + formId).serializeArray();
+    $.each(inputs, function (i, input) {
+        formObj[input.name] = input.value;
+    });
+    return formObj;
 }
